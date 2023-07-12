@@ -19,5 +19,8 @@ Estas instruções abordará a inicialização do projeto e utilização do mesm
 - Rodar o comando `docker-compose build` para configurar o projeto
 - Rodar o comando `docker-compose up` para inicializar o projeto
 - Você pode testar as API's através da documentação do swagger no link http://localhost:3000/api-docs/index.html (caso esteja rodando no local)
+- Para rodar os testes, é precisar estar dentro do bash do docker ou de onde o projeto está rodando e utilizar o comando `rspec spec/controllers/`
+
+
 
 > This is a challenge by Coodesh
