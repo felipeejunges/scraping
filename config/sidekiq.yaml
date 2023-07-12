@@ -1,0 +1,14 @@
+---
+:concurrency: 5
+:queues:
+  - high_priority
+  - default
+  - low_priority
+:scheduler:
+  :schedule:
+    product_scraping_job:
+      enabled: true
+      in: "5m"
+      cron: "0 3 * * *"
+      class: ProductScrapingJob
+      queue: high_priority
