@@ -1,24 +1,23 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Scraping
 
-Things you may want to cover:
+O projeto coleta os dados do site Open Food Facts através de um serviço de background, formata o dado e então exibe através de um API.
 
-* Ruby version
+## Tecnologias
 
-* System dependencies
+- Ruby v3.2.1
+- Ruby on Rails v6.1.7
+- Docker
+- Sidekiq
+- Swagger (rswag)
+- Rspec
 
-* Configuration
+## Instruções
 
-* Database creation
+Estas instruções abordará a inicialização do projeto e utilização do mesmo atráves do docker
 
-* Database initialization
+- Rodar o comando `docker-compose build` para configurar o projeto
+- Rodar o comando `docker-compose up` para inicializar o projeto
+- Você pode testar as API's através da documentação do swagger no link http://localhost:3000/api-docs/index.html (caso esteja rodando no local)
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+> This is a challenge by Coodesh
