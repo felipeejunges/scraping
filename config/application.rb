@@ -39,13 +39,13 @@ module Scraping
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, logger: Rails.logger do
-      allow do
-        origins '*'
-        resource '*',
-                 headers: :any,
-                 methods: %i[get post options delete put patch]
-      end
-    end
+    # config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, logger: Rails.logger do
+    #   allow do
+    #     origins '*'
+    #     resource '*',
+    #              headers: :any,
+    #              methods: %i[get post options delete put patch]
+    #   end
+    # end
   end
 end

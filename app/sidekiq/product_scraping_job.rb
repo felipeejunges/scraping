@@ -33,7 +33,7 @@ class ProductScrapingJob < ApplicationJob
 
     product.url = product_url
     product.product_name = body.search("span[id='field_generic_name_value']").text
-    product.barcode = body.search("p[id='barcode_paragraph']").text.split(':')[1].strip
+    product.barcode = body.search("p[id='barcode_paragraph']")&.text&.split(':')&.[](1)&.strip || "#{product.code} (Ambiguous barcode)"
     product.quantity = body.search("span[id='field_quantity_value']").text
     product.packaging = body.search("span[id='field_packaging_value']").text
     product.brands = body.search("span[id='field_brands_value']").text

@@ -1,0 +1,47 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/":
+    get:
+      summary: list homes
+      responses:
+        '200':
+          description: successful
+  "/products":
+    parameters:
+    - name: page
+      in: query
+      description: page
+      schema:
+        type: integer
+    - name: per_page
+      in: query
+      description: per_page
+      schema:
+        type: integer
+    get:
+      summary: list products
+      responses:
+        '200':
+          description: successful
+  "/products/{code}":
+    parameters:
+    - name: code
+      in: path
+      description: code
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show product
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
