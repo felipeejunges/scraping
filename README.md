@@ -17,6 +17,7 @@ O projeto coleta os dados do site Open Food Facts através de um serviço de bac
 - Mechanize
 - Nokigiri
 - Kaminari
+- CircleCI
 
 ## Instruções
 
