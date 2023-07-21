@@ -36,48 +36,7 @@ jobs:
       - run:
           command: "curl -LO http://archive.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb && sudo dpkg -i libffi6_3.2.1-8_amd64.deb"
           name: "Install libffi6 for backwards-compatibility"
-      - run:
-          command: |
-            mkdir /tmp/test-results
-            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-            xvfb-run --auto-servernum bundle exec rspec $TESTFILES --profile 10 --color --format progress --format RspecJunitFormatter --out /tmp/test-results/rspec.xml
-      - store_test_results:
-          path: /tmp/test-results
-      - run:
-          name: Stash Coverage Results
-          command: |
-            mkdir coverage_results
-            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
-      - persist_to_workspace:
-          root: .
-          paths:
-            - coverage_results
-      - store_artifacts:
-          path: tmp/test_prof
-  coverage:
-    docker:
-      - image: "cimg/ruby:3.2.1-browsers"
-    environment:
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: vendor/bundle
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - restore_cache:
-          keys:
-            - appname-bundle-
-            - appname-bundle-
-      - run:
-          name: Bundle Install
-          command: bundle check || bundle install
-      - run:
-          name: Merge and check coverage
-          command: |
-            bundle exec rake coverage:report
-      - store_artifacts:
-          path: coverage
+      - ruby/rspec-test
 
 version: 2.1
 orbs:
