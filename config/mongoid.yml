@@ -177,11 +177,10 @@ development:
 test:
   clients:
     default:
-      uri: mongodb+srv://fellipeejunges:Bpd2HQ9DJJXcEhac@cluster1.kku3mdq.mongodb.net/scraping_test?retryWrites=true&w=majority
-      # database: scraping_test
-      # hosts:
-      #   - localhost:27017
+      database: scraping-test
+      hosts:
+        - mongo:27017
       options:
         read:
           mode: :primary
-        max_pool_size: 5
+        max_pool_size: 1
