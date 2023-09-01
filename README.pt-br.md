@@ -1,5 +1,6 @@
 
 # Scraping
+[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/felipeejunges/scraping/blob/master/README.md)
 
 O projeto coleta os dados do site Open Food Facts através de um serviço de background, formata o dado e então exibe através de um API.
 
