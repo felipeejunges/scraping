@@ -5,7 +5,7 @@ FactoryBot.define do
     code { Faker::Barcode.unique.ean(13) }
     barcode { "#{Faker::Barcode.unique.ean(13)}(EAN / EAN-13)" }
     _status { :imported }
-    imported_t { -1.hours.from_now }
+    imported_at { -1.hours.from_now }
     url { Faker::Internet.url }
     product_name { Faker::Commerce.product_name }
     quantity { '240 g' }

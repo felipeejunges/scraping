@@ -4,11 +4,14 @@
   - high_priority
   - default
   - low_priority
+  - product_scraping_1
+  - product_scraping_2
+  - product_scraping_3
 :scheduler:
   :schedule:
-    product_scraping_job:
+    product_scraping_scheduler_job:
       enabled: true
       in: "5m"
       cron: "0 3 * * *"
-      class: ProductScrapingJob
+      class: ProductScrapingSchedulerJob
       queue: high_priority
