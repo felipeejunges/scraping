@@ -17,6 +17,9 @@ reset:
 up:
 	docker-compose up
 
+scale_up:
+	docker-compose up --scale sidekiq=3
+
 console:
 	docker-compose exec api bundle exec rails c
 

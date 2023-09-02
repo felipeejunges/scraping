@@ -7,12 +7,12 @@ class ProductsController < ApplicationController
     @products = Product.all
     @products = Product.page(params[:page]).per(params[:per_page]) if params[:page] && params[:per_page]
 
-    format_and_render_response(@products)
+    render_response(@products)
   end
 
   # GET /buyers/1
   def show
-    format_and_render_response(@product)
+    render_response(@product)
   end
 
   private
@@ -21,9 +21,13 @@ class ProductsController < ApplicationController
     @product = Product.find_by(code: params[:id])
   end
 
-  def format_and_render_response(object)
+  def format_response
+    %i[code barcode imported_at url product_name quantity categories packaging brands image_url]
+  end
+
+  def render_response(object)
     render json: object,
-           only: %i[code barcode imported_t url product_name quantity categories packaging brands image_url],
+           only: format_response,
            methods: [:status]
   end
 end

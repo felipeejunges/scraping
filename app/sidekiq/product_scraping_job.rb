@@ -3,17 +3,14 @@
 class ProductScrapingJob < ApplicationJob
   attr_reader :mechanize
 
-  def perform(_args = nil)
+  def perform(args = {})
     @mechanize = Mechanize.new
-    collecting
+
+    collect(args['li'])
   end
 
-  def collecting
-    body = Nokogiri::HTML(mechanize.get('https://world.openfoodfacts.org/').body)
-    body.search('ul.products li').first(100).map { |li| collect_init(li) }
-  end
-
-  def collect_init(li_tag)
+  def collect(li_tag)
+    li_tag = Nokogiri::HTML(li_tag)
     a = li_tag.search('a').first
     a_link = a.attributes['href']
     code = a_link.value.split('/')[2]
@@ -23,7 +20,7 @@ class ProductScrapingJob < ApplicationJob
     product.image_url = li_tag.search('img').first.attributes['src'].value
 
     collect_details("https://world.openfoodfacts.org#{a_link}", product)
-    product.imported_t = Time.now
+    product.imported_at = Time.now
     product.status = :imported
     product.save
   end
